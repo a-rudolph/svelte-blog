@@ -1,12 +1,15 @@
 <script>
+  import PostCard from '../components/PostCard.svelte';
+
   const title = 'This blog is built on sveltekit!';
 
-  let numberOfPosts = 0;
+  let numberOfPosts = 3;
   let posts = [];
 
   const firstPost = {
     title: 'How I made a blog website using sveltekit.',
-    body: 'I wanted to try the svelte framework so I decided to make a blog website. In order to use sveltekit I first needed to update npm.',
+    author: 'ar',
+    body: 'I wanted to try the svelte framework so I decided to make a blog website. In order to use sveltekit I first needed to update node.',
   };
 
   $: posts = Array(numberOfPosts)
@@ -17,10 +20,7 @@
 <h1>{title}</h1>
 <div class="posts-container">
   {#each posts as post (post.id)}
-    <div class="card">
-      <h3>{post.title}</h3>
-      <p>{post.body}</p>
-    </div>
+    <PostCard {post} />
   {:else}
     <p>no blog posts to show 🤷‍♂️</p>
   {/each}
@@ -47,15 +47,6 @@
     flex-wrap: wrap;
     margin: 0 auto;
     max-width: 964px;
-  }
-
-  .card {
-    padding: 24px;
-    margin: 16px;
-    width: 400px;
-
-    border: 1px solid rgb(0, 0, 0, 0.6);
-    border-radius: 2px;
   }
 
   .paginator input {

@@ -1,14 +1,15 @@
 <script>
   const title = 'This blog is built on sveltekit!';
 
-  const numberOfPosts = 5;
+  let numberOfPosts = 0;
+  let posts = [];
 
   const firstPost = {
     title: 'How I made a blog website using sveltekit.',
     body: 'I wanted to try the svelte framework so I decided to make a blog website. In order to use sveltekit I first needed to update npm.',
   };
 
-  const posts = Array(numberOfPosts)
+  $: posts = Array(numberOfPosts)
     .fill(firstPost)
     .map((_, i) => ({ ..._, id: i + 1 }));
 </script>
@@ -23,6 +24,9 @@
   {:else}
     <p>no blog posts to show 🤷‍♂️</p>
   {/each}
+</div>
+<div class="paginator">
+  showing <input type="number" max={10} bind:value={numberOfPosts} /> of 10 posts
 </div>
 <p class="footer">
   Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
@@ -52,5 +56,15 @@
 
     border: 1px solid rgb(0, 0, 0, 0.6);
     border-radius: 2px;
+  }
+
+  .paginator input {
+    width: 60px;
+    padding: 8px;
+  }
+
+  .paginator {
+    width: max-content;
+    margin: 24px auto;
   }
 </style>

@@ -1,25 +1,40 @@
+<script context="module">
+  export async function load({ page }) {
+    let posts;
+
+    try {
+      const res = await fetch('http://localhost:3000/api/posts');
+      const body = await res.json();
+
+      posts = body.posts;
+    } catch (err) {
+      posts = [];
+    }
+
+    return {
+      props: {
+        posts,
+      },
+    };
+  }
+</script>
+
 <script>
   import PostCard from '../components/PostCard.svelte';
+  export let posts;
+
+  let displayPosts = [];
 
   const title = 'This blog is built on sveltekit!';
 
   let numberOfPosts = 3;
-  let posts = [];
 
-  const firstPost = {
-    title: 'How I made a blog website using sveltekit.',
-    author: 'ar',
-    body: 'I wanted to try the svelte framework so I decided to make a blog website. In order to use sveltekit I first needed to update node.',
-  };
-
-  $: posts = Array(numberOfPosts)
-    .fill(firstPost)
-    .map((_, i) => ({ ..._, id: i + 1 }));
+  $: displayPosts = posts.slice(0, numberOfPosts);
 </script>
 
 <h1>{title}</h1>
 <div class="posts-container">
-  {#each posts as post (post.id)}
+  {#each displayPosts as post (post.id)}
     <PostCard {post} />
   {:else}
     <p>no blog posts to show 🤷‍♂️</p>

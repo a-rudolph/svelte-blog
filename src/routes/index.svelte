@@ -15,7 +15,7 @@
 </div>
 
 <Post
-  id={1}
+  id="palette"
   title={`coder's palette`}
   date="March 12, 2022"
   teaser={`know how to access all the tools at your disposal. easy to navigate and learn the shortcuts
@@ -23,7 +23,7 @@
 />
 
 <Post
-  id={0}
+  id="lorem"
   title={`some other article`}
   date="February 4, 2022"
   teaser={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni similique laborum ratione

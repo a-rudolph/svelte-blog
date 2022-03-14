@@ -2,7 +2,7 @@
   import Post from '$lib/Post.svelte';
 </script>
 
-<h1>ar-blog</h1>
+<h1 class="prose-invert">ar-blog</h1>
 
 <div class="flex m-1 mb-7">
   <div
@@ -10,7 +10,10 @@
    bg-slate-50 h-[48px] w-[48px]"
   />
   <div class="p-1 pl-3">
-    Personal blog by <b class="btn-link">Adam Rudolph</b><br /> DX enthusiast
+    Personal blog by <a
+      href="https://github.com/a-rudolph"
+      class="btn-link text-secondary">Adam Rudolph</a
+    ><br /> DX enthusiast
   </div>
 </div>
 
